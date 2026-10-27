@@ -9,7 +9,9 @@
 
 9 basic yml file :
     name: first Workflow - name is a reserved keyword here for defining the workflow name
-    on: workflow_dispatch - on is a reserved keyword for the event on which this workflow should trigger, and workflow_dispatch here is a reserved event which means that we can manually trigger a workflow.
+    on: workflow_dispatch - on is a reserved keyword for the event on which this workflow should trigger, 
+                            and workflow_dispatch here is a reserved event which means that,
+                            we can manually trigger a workflow.
     jobs: - defining a job, we can have multiple jobs
       first-job: - this is the name of the job, this we cna name anything
         runs-on: ubuntu-latest - name of the runner
