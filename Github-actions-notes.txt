@@ -14,8 +14,8 @@
       first-job: - this is the name of the job, this we cna name anything
         runs-on: ubuntu-latest - name of the runner
         steps: - defining the steps
-          - name: Print greeting
-            run: echo "Hello World!"
+          - name: Print greeting - name of the step
+            run: echo "Hello World!" - command we want to execute
           - name: Print goodbye
             run: echo "Done -Bye"
 
