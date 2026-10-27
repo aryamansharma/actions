@@ -15,7 +15,9 @@
         runs-on: ubuntu-latest - name of the runner
         steps: - defining the steps
           - name: Print greeting - name of the step
-            run: echo "Hello World!" - command we want to execute
+            run: | - we can use this pipe to execute multiple commands
+                echo "Hello World!" - command we want to execute
+                echo "Hello from second line"
           - name: Print goodbye
             run: echo "Done -Bye"
 
