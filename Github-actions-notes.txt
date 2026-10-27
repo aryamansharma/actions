@@ -1,0 +1,22 @@
+1. we create workflows to automate process like CI/CD.
+2. workflows are attached to repos. we can create multiple workflows attached to Repos.
+3. inside workflows we create jobs, we can create multiple jobs inside a workflow
+4. inside a single job we can have multiple steps
+5. steps are the main things which are executed like unit testing etc.
+6. inside jobs we have runners which executed jobs in our workflow
+
+8. we create yml file inside .github/wrokflow folder to define a workflow.
+
+9 basic yml file :
+    name: first Workflow - name is a reserved keyword here for defining the workflow name
+    on: workflow_dispatch - on is a reserved keyword for the event on which this workflow should trigger, and workflow_dispatch here is a reserved event which means that we can manually trigger a workflow.
+    jobs: - defining a job, we can have multiple jobs
+      first-job: - this is the name of the job, this we cna name anything
+        runs-on: ubuntu-latest - name of the runner
+        steps: - defining the steps
+          - name: Print greeting
+            run: echo "Hello World!"
+          - name: Print goodbye
+            run: echo "Done -Bye"
+
+10. yml file only accepts identation
