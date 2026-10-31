@@ -5,7 +5,7 @@
 5. steps are the main things which are executed like unit testing etc.
 6. inside jobs we have runners which executed jobs in our workflow
 
-8. we create yml file inside .github/wrokflow folder to define a workflow.
+8. we create yml file inside .github/wrokflows folder to define a workflow.
 
 9 basic yml file :
     name: first Workflow - name is a reserved keyword here for defining the workflow name
@@ -24,3 +24,60 @@
             run: echo "Done -Bye"
 
 10. yml file only accepts identation
+11. we can listen for events (workflow triggers) on repository to run a workflow.
+12. 1st step should always be to get the code in the runner because repos are just floders.
+    they are not server on which we can run jobs.
+13. we use Action from github marketplace to clone repo on te runner
+14. Action is basically a piece of code provided by github, which we can use in our workflow
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get code
+              uses: actions/checkout@v3 - if we want to use an action
+15. some runners have pre-installed softwares , like ubuntu has node js installed,
+    so we dont need to install it in one of the steps.
+16. but if we want to install any softwares, we can use with keyword like this:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get Code
+        uses: actions/checkout@v3
+      - name: install Node js
+        uses: actions/setup-node@v3
+        with: - we can use 'with' to for configuration
+          node-version: 18
+17. we can have multiple jobs inside a workflow:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test // this makes sure that deploy job will only run after test job is completed
+    steps:
+      - name: Get code
+        uses: actions/checkout@v3
+18. by default all the jobs run parallely, but if we want to run jobs in sequence, we can us needs keyword.
+    like we are using 'deploy' job.
+19. each job can have its own runner
+20. we can also run a workflow for multiple events:
+name: Deploy application
+on: [push, workflow_dispatch] // this make sure that this workflow will run on push and also we can manually trigger this workflow
+jobs:
+21. Github provides a way we can get meta data about the repo to which a workflow is attached to, token details, env variables etc.
+    this Concept in terms of Github actions is called Context.
+    name: Output Context data
+    on: workflow_dispatch
+    jobs:
+      display-context:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Display Github Context
+            run: echo "${{toJSON(github)}}" - this github is an object (Context) provided by github to get meta data.
+                                                and this toJSON is a method to convert that object into string
+                                                and we use this ${{ }} syntax to use Context data in our workflow script
