@@ -81,3 +81,21 @@ jobs:
             run: echo "${{toJSON(github)}}" - this github is an object (Context) provided by github to get meta data.
                                                 and this toJSON is a method to convert that object into string
                                                 and we use this ${{ }} syntax to use Context data in our workflow script
+22. We can add activity types to a trigger (event), 
+    for eg :if we want to trigger a workflow for pull request, so we can add specific activity types like open, close to         specify which event for pull request we need to run the workflow
+
+    name: bla bla
+    on:
+        pull_request:
+            types: [opened, closed] - this means this workflow will only run on open and close of a workflow
+        push: - like this we can specify that we also want to run the workflow on push
+    jobs:
+
+23. if we want to run a workflow without filtering, for eg: if we want to run the workflow for all activity types of pull     request, then we can do it like this:
+
+    name: bla bla
+    on: pull_request
+
+
+
+
