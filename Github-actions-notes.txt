@@ -95,6 +95,19 @@ jobs:
 
     name: bla bla
     on: pull_request
+24. we can filter some events as well:
+name: Events Demo 1
+on:
+  pull_request:
+    types: [opened, closed]
+  push:
+    branches: 
+      - 'main'
+      - 'dev-*' - * means anything except '/'
+      - 'feat/**' - ** means anything including '/'
+    paths-ignore:
+      - '.github/workflows/*'
+* this means that this workflow will only run when a code is pushed on the branches mentioned and no file ischanged inside  the workflow folder (paths-ignore filter)
 
 
 
